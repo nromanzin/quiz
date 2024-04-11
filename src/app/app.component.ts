@@ -1,16 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioChange, MatRadioModule } from '@angular/material/radio';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
-export type Question = {
-  prompt: string;
-  options: string[];
-  solution: string;
-  selectedOption?: string;
-};
+import { Question, QuestionService } from './question.service';
 
 @Component({
   selector: 'app-root',
@@ -25,29 +19,22 @@ export type Question = {
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Quiz TUE/TFUE';
 
-  questions: Question[] = [
-    {
-      prompt: 'Question 1',
-      options: ['Réponse A', 'Réponse B', 'Réponse C'],
-      solution: 'Réponse B',
-    },
-    {
-      prompt: 'Question 2',
-      options: ['Réponse A', 'Réponse B', 'Réponse C'],
-      solution: 'Réponse C',
-    },
-    {
-      prompt: 'Question 3',
-      options: ['Réponse A', 'Réponse B', 'Réponse C'],
-      solution: 'Réponse A',
-    },
-  ];
-
+  questions: Question[] = []
   displayAnswer = false;
   score = 0;
+
+  constructor(private readonly _questionService: QuestionService) {}
+
+  ngOnInit(): void {
+    this.getQuestions();
+  }
+
+  getQuestions() {
+    this._questionService.getQuestions().subscribe(data => this.questions = data);
+  }
 
   selectAnswer(event: MatRadioChange, question: Question) {
     question.selectedOption = event.value;

@@ -7,7 +7,7 @@
   <div class="content">
     @for (question of questions; track question.prompt) {
     <mat-card>
-      <mat-card-header>{{ question.prompt }}</mat-card-header>
+      <mat-card-header>{{ question.category }} - {{ question.prompt }}</mat-card-header>
       <mat-card-content>
         <mat-radio-group
           class="radio-answers"
