@@ -5,6 +5,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatRadioChange, MatRadioModule } from '@angular/material/radio';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+export type Question = {
+  prompt: string;
+  options: string[];
+  solution: string;
+  selectedOption?: string;
+};
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -21,7 +28,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 export class AppComponent {
   title = 'Quiz TUE/TFUE';
 
-  questions = [
+  questions: Question[] = [
     {
       prompt: 'Question 1',
       options: ['Réponse A', 'Réponse B', 'Réponse C'],
@@ -40,13 +47,17 @@ export class AppComponent {
   ];
 
   displayAnswer = false;
+  score = 0;
 
-  selectedAnswer = '';
-  answer = '';
-  selectAnswer(event: MatRadioChange) {
-    this.selectedAnswer = event.value;
+  selectAnswer(event: MatRadioChange, question: Question) {
+    question.selectedOption = event.value;
+    console.log(question);
   }
   validate() {
+    this.score = 0;
     this.displayAnswer = true;
+    for (const question of this.questions) {
+      this.score += question.solution === question.selectedOption ? 1 : 0;
+    }
   }
 }

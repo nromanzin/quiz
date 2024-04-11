@@ -26,11 +26,18 @@ main {
 }
 
 .mat-mdc-card {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .mat-mdc-card-footer {
   padding: 0.5rem;
   color: white;
   background-color: #3f51b5;
+}
+
+.validation {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 1rem;
 }

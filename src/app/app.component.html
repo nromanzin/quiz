@@ -9,24 +9,32 @@
     <mat-card>
       <mat-card-header>{{ question.prompt }}</mat-card-header>
       <mat-card-content>
-        <mat-radio-group class="radio-answers" (change)="selectAnswer($event)">
+        <mat-radio-group
+          class="radio-answers"
+          (change)="selectAnswer($event, question)"
+        >
           @for (option of question.options; track $index) {
-          <mat-radio-button value="option">{{ option }}</mat-radio-button>
+          <mat-radio-button value="{{ option }}">{{ option }}</mat-radio-button>
           }
         </mat-radio-group>
       </mat-card-content>
       @if (displayAnswer) {
-        <mat-card-footer>{{ question.solution }}</mat-card-footer>
+      <mat-card-footer>Réponse : {{ question.solution }}</mat-card-footer>
       }
     </mat-card>
     }
-    <button
-      mat-flat-button
-      color="primary"
-      class="button-validate"
-      (click)="validate()"
-    >
-      Valider le quiz
-    </button>
+    <div class="validation">
+      <button
+        mat-flat-button
+        color="primary"
+        class="button-validate"
+        (click)="validate()"
+      >
+        Valider le quiz
+      </button>
+      @if (displayAnswer) {
+      {{ score }} / {{ questions.length }}
+      }
+    </div>
   </div>
 </main>
