@@ -1,0 +1,36 @@
+main {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  box-sizing: inherit;
+  position: relative;
+}
+
+.content {
+  justify-content: space-around;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 3rem;
+}
+
+.radio-answers {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-validate {
+  margin-top: 1rem;
+}
+
+.mat-mdc-card {
+    margin-bottom: 1rem;
+}
+
+.mat-mdc-card-footer {
+  padding: 0.5rem;
+  color: white;
+  background-color: #3f51b5;
+}
