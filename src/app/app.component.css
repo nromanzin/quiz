@@ -16,13 +16,24 @@ main {
   margin-bottom: 3rem;
 }
 
+.start-quiz {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
 .radio-answers {
   display: flex;
   flex-direction: column;
 }
 
+.button-start {
+  margin: 1rem 0rem;
+}
+
 .button-validate {
-  margin-top: 1rem;
+  margin: 1rem 0rem;
 }
 
 .mat-mdc-card {

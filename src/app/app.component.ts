@@ -3,8 +3,13 @@ import { RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioChange, MatRadioModule } from '@angular/material/radio';
+import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Question, QuestionService } from './question.service';
+import {
+  DEFAULT_QUESTIONS_NUMBER,
+  Question,
+  QuestionService,
+} from './question.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -16,26 +21,36 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     MatCardModule,
     MatRadioModule,
+    MatSliderModule,
     MatToolbarModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Quiz TUE/TFUE';
 
-  questions: Question[] = []
+  selectedQuestionNumber = DEFAULT_QUESTIONS_NUMBER;
+  questions: Question[] = [];
+  quizStarted = false;
   displayAnswer = false;
   score = 0;
 
   constructor(private readonly _questionService: QuestionService) {}
 
-  ngOnInit(): void {
+  selectQuestionNumber(selectedQuestionNumber: number) {
+    this.selectedQuestionNumber = selectedQuestionNumber;
+  }
+
+  startQuiz(): void {
     this.getQuestions();
+    this.quizStarted = true;
   }
 
   getQuestions() {
-    this._questionService.getQuestions().subscribe(data => this.questions = data);
+    this._questionService
+      .getQuestions(this.selectedQuestionNumber)
+      .subscribe((data) => (this.questions = data));
   }
 
   selectAnswer(event: MatRadioChange, question: Question) {

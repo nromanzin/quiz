@@ -20,7 +20,7 @@ export const DEFAULT_OPTIONS_NUMBER = 3;
 @Injectable({ providedIn: 'root' })
 export class QuestionService {
   constructor(private readonly _httpClient: HttpClient) {}
-  getQuestions(): Observable<Question[]> {
+  getQuestions(questionNumber: number = DEFAULT_QUESTIONS_NUMBER, optionNumber: number = DEFAULT_OPTIONS_NUMBER): Observable<Question[]> {
     return this._httpClient
       .get('assets/questions.csv', { responseType: 'text' })
       .pipe(
@@ -47,7 +47,7 @@ export class QuestionService {
               clonedSolutions.splice(currentSolutionIndex, 1);
             }
             const options = [
-              ...getRandomSubarray(clonedSolutions, DEFAULT_OPTIONS_NUMBER - 1),
+              ...getRandomSubarray(clonedSolutions, optionNumber - 1),
               datum.solution,
             ];
             shuffleArray(options);
@@ -57,7 +57,7 @@ export class QuestionService {
             };
             questions.push(question);
           }
-          return getRandomSubarray(questions, DEFAULT_QUESTIONS_NUMBER);
+          return getRandomSubarray(questions, questionNumber);
         })
       );
   }
