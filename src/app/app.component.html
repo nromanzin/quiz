@@ -25,6 +25,9 @@
         </mat-slider>
       </div>
     </div>
+    @if (displayAnswer) {
+    Score : {{ score }} / {{ questions.length }}
+    }
     @if (quizStarted) { @for (question of questions; track question.prompt) {
     <mat-card>
       <mat-card-header
@@ -61,9 +64,6 @@
       >
         Valider le quiz
       </button>
-      @if (displayAnswer) {
-      {{ score }} / {{ questions.length }}
-      }
     </div>
     }
   </div>

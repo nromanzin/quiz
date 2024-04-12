@@ -74,5 +74,10 @@ export class AppComponent implements OnDestroy {
     for (const question of this.questions) {
       this.score += question.solution === question.selectedOption ? 1 : 0;
     }
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   }
 }
