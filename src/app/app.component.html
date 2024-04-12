@@ -14,10 +14,16 @@
       >
         @if (quizStarted) { Relancer le quiz } @else { Démarrer le quiz }
       </button>
-      Nombre de questions: {{ selectedQuestionNumber }}
-      <mat-slider discrete min="5" max="15" step="5">
-        <input matSliderThumb value="10" (valueChange)="selectQuestionNumber($event)" />
-      </mat-slider>
+      <div>
+        Nombre de questions: {{ selectedQuestionNumber }}
+        <mat-slider discrete min="5" max="15" step="5">
+          <input
+            matSliderThumb
+            value="10"
+            (valueChange)="selectQuestionNumber($event)"
+          />
+        </mat-slider>
+      </div>
     </div>
     @if (quizStarted) { @for (question of questions; track question.prompt) {
     <mat-card>
