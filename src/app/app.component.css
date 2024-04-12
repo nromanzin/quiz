@@ -35,6 +35,12 @@ main {
   margin: 1rem 0rem;
 }
 
+.mat-mdc-card-header {
+  color: white;
+  background-color: #3f51b5;
+  padding: 0.5rem;
+}
+
 .mat-mdc-card {
   margin-bottom: 1rem;
 }

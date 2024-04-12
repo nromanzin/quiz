@@ -25,12 +25,17 @@
         </mat-slider>
       </div>
     </div>
-    @if (displayAnswer) {
-    Score : {{ score }} / {{ questions.length }}
-    }
-    @if (quizStarted) { @for (question of questions; track question.prompt) {
+    @if (displayAnswer) { Score : {{ score }} / {{ questions.length }}
+    } @if (quizStarted) { @for (question of questions; track question.prompt) {
     <mat-card>
       <mat-card-header
+        [ngClass]="
+          displayAnswer
+            ? question.solution === question.selectedOption
+              ? 'good-answer'
+              : 'bad-answer'
+            : ''
+        "
         >{{ question.category }} - {{ question.prompt }}</mat-card-header
       >
       <mat-card-content>
