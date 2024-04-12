@@ -29,10 +29,16 @@ main {
   margin-bottom: 1rem;
 }
 
-.mat-mdc-card-footer {
+.good-answer {
   padding: 0.5rem;
   color: white;
-  background-color: #3f51b5;
+  background-color: green;
+}
+
+.bad-answer {
+  padding: 0.5rem;
+  color: white;
+  background-color: red;
 }
 
 .validation {

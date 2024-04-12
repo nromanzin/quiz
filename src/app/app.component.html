@@ -19,7 +19,7 @@
         </mat-radio-group>
       </mat-card-content>
       @if (displayAnswer) {
-      <mat-card-footer>Réponse : {{ question.solution }}</mat-card-footer>
+      <mat-card-footer [ngClass]="question.solution === question.selectedOption ? 'good-answer' : 'bad-answer'">Réponse : {{ question.solution }}</mat-card-footer>
       }
     </mat-card>
     }
