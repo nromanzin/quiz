@@ -6,13 +6,23 @@
 <main class="main">
   <div class="content">
     <div class="start-quiz">
+      @if (quizStarted && displayAnswer) {
+      <button
+        mat-flat-button
+        color="primary"
+        class="button-start"
+        (click)="reloadPage()"
+      >
+        Recharger la page
+      </button>
+      } @else if (!quizStarted) {
       <button
         mat-flat-button
         color="primary"
         class="button-start"
         (click)="startQuiz()"
       >
-        @if (quizStarted) { Relancer le quiz } @else { Démarrer le quiz }
+        Démarrer le quiz
       </button>
       <div>
         Nombre de questions: {{ selectedQuestionNumber }}
@@ -24,9 +34,10 @@
           />
         </mat-slider>
       </div>
+      }
     </div>
-    @if (displayAnswer) { Score : {{ score }} / {{ questions.length }}
-    } @if (quizStarted) { @for (question of questions; track question.prompt) {
+    @if (displayAnswer) { Score : {{ score }} / {{ questions.length }} } @if
+    (quizStarted) { @for (question of questions; track question.prompt) {
     <mat-card>
       <mat-card-header
         [ngClass]="

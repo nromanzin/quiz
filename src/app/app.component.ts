@@ -57,6 +57,10 @@ export class AppComponent implements OnDestroy {
     this.displayAnswer = false;
   }
 
+  reloadPage(): void {
+    location.reload();
+  }
+
   getQuestions() {
     this.questionsSub = this._questionService
       .getQuestions(this.selectedQuestionNumber)
